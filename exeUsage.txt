@@ -1,0 +1,36 @@
+#include <unistd.h>
+extern char **environ;
+
+int execl(const char *path, const char *arg, ...);
+int execlp(const char *file, const char *arg, ...);
+int execle(const char *path, const char *arg, ..., char * const envp[]);
+int execv(const char *path, char *const argv[]);
+int execvp(const char *file, char *const argv[]);
+int execvpe(const char *file, char *const argv[], char *const envp[]);
+
+--------------
+exec系関数を使用することでシェルコマンドを実行することができる。
+exec系関数には上の6種類が存在する。
+
+
+execの後がl,v,p,e
+
+l:
+コマンドの引数を可変長で取る
+最後はNULL
+example) execl("/bin/ls","-a","-l",NULL);
+
+v:
+コマンドの引数をポインタの配列として取る。
+配列の最初はファイル名へのポインタ、配列の最後はNULLである。
+example) char *argv[]={"/bin/le","-a","-l",NULL};
+execv(argv[0],arg);
+
+p:
+指定されたファイル名に/が含まれていない場合、シェルの環境変数のPATHが適用される。
+example) execlp("ls","-a","-l",NULL);
+
+e:
+環境変数を設定することができる
+char *envp[]={"ENV1=env1","ENV2=env2",NULL};
+execle("/usr/bin/env","",NULL,envp);

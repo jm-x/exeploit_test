@@ -12,6 +12,7 @@ int execvpe(const char *file, char *const argv[], char *const envp[]);
 exec系関数を使用することでシェルコマンドを実行することができる。
 exec系関数には上の6種類が存在する。
 
+第二引数は無しで良いのか？？？
 
 execの後がl,v,p,e
 
@@ -28,7 +29,7 @@ execv(argv[0],argv);
 
 p:
 指定されたファイル名に/が含まれていない場合、シェルの環境変数のPATHが適用される。
-example) execlp("ls","-a","-l",NULL);
+example) execlp("ls","","-a","-l",NULL);
 
 e:
 環境変数を設定することができる

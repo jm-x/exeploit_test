@@ -18,13 +18,13 @@ execの後がl,v,p,e
 l:
 コマンドの引数を可変長で取る
 最後はNULL
-example) execl("/bin/ls","-a","-l",NULL);
+example) execl("/bin/ls","/bin/ls","-a","-l",NULL);
 
 v:
 コマンドの引数をポインタの配列として取る。
 配列の最初はファイル名へのポインタ、配列の最後はNULLである。
-example) char *argv[]={"/bin/le","-a","-l",NULL};
-execv(argv[0],arg);
+example) char *argv[]={"/bin/ls","-a","-l",NULL};
+execv(argv[0],argv);
 
 p:
 指定されたファイル名に/が含まれていない場合、シェルの環境変数のPATHが適用される。
